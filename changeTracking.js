@@ -58,18 +58,19 @@
 			$node.on( 'change', function( e ) {
 
 				var $target = $( e.target );
+				var args = { 'id': $target.attr( 'id' ) };
 
 				if ( getValue( $target ) === originalValue ) {
 
 					$target
 						.removeClass( 'vui-changed' )
-						.trigger( 'restored.vui', $target.attr( 'id' ) );
+						.trigger( 'vui-restored', args );
 
 				} else {
 
 					$target
 						.addClass( 'vui-changed' )
-						.trigger( 'changed.vui', $target.attr( 'id' ) );
+						.trigger( 'vui-changed', args );
 
 				}
 
@@ -83,7 +84,7 @@
 
 			$node
 				.removeClass( 'vui-changed' )
-				.trigger( 'restored.vui', $node.attr( 'id' ) )
+				.trigger( 'vui-restored', $node.attr( 'id' ) )
 				.removeUniqueId();
 
 		},
