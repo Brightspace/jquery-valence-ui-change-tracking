@@ -55,7 +55,7 @@
 
 			var originalValue = getValue( $node );
 
-			$node.on( 'change', function( e ) {
+			$node.on( 'change.vui', function( e ) {
 
 				var $target = $( e.target );
 				var args = { 'id': $target.attr( 'id' ) };
@@ -85,6 +85,7 @@
 			$node
 				.removeClass( 'vui-changed' )
 				.trigger( 'vui-restored', $node.attr( 'id' ) )
+				.off( 'change.vui' )
 				.removeUniqueId();
 
 		},
