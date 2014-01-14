@@ -30,13 +30,13 @@
 
 			var changedItems = {};
 
-			$node.on( 'vui-changed', function( e, args ) {
+			$node.on( 'vui-change', function( e, args ) {
 
 				changedItems[args.id] = true;
 
 				$node.addClass( 'vui-changed' );
 
-			} ).on( 'vui-restored', function( e, args ) {
+			} ).on( 'vui-restore', function( e, args ) {
 
 				if ( changedItems[args.id] !== undefined ) {
 					delete changedItems[args.id];
@@ -54,7 +54,7 @@
 
 			$( this.element )
 				.removeClass( 'vui-changed' )
-				.off( 'vui-changed vui-restored' );
+				.off( 'vui-change vui-restore' );
 
 		},
 

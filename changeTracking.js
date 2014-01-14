@@ -64,13 +64,13 @@
 
 					$target
 						.removeClass( 'vui-changed' )
-						.trigger( 'vui-restored', args );
+						.trigger( 'vui-restore', args );
 
 				} else {
 
 					$target
 						.addClass( 'vui-changed' )
-						.trigger( 'vui-changed', args );
+						.trigger( 'vui-change', args );
 
 				}
 
@@ -84,7 +84,7 @@
 
 			$node
 				.removeClass( 'vui-changed' )
-				.trigger( 'vui-restored', $node.attr( 'id' ) )
+				.trigger( 'vui-restore', $node.attr( 'id' ) )
 				.off( 'change.vui' )
 				.removeUniqueId();
 
