@@ -53,11 +53,6 @@
 
 			var triggerEvent = function( $target ) {
 
-				var $trackingContainer = $node.closest( '[data-track-changes="true"]' );
-				if ( $trackingContainer.length === 0 ) {
-					return;
-				}
-
 				var args = { 'id': $target.attr( 'id' ) };
 
 				if ( getValue( $target ) === $target.data( 'originalValue' ) ) {

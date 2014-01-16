@@ -24,17 +24,23 @@
 
 	$.widget( 'vui.vui_changeTracker', {
 
-		_changedItems: {},
-
 		_create: function() {
 
-			var me = this;
-			
-			var $node = $( this.element );
+			var $node = $( this.element )
+				.data( 'changedItems', { } );
+
+			var isTrackingEnabled = function() {
+				var $trackingContainer = $node.closest( '[data-track-changes="true"]' );
+				return ( $trackingContainer.length > 0 );
+			};
 
 			$node.on( 'vui-change', function( e, args ) {
 
-				me._changedItems[args.id] = true;
+				if ( !isTrackingEnabled() ) {
+					return;
+				}
+
+				$node.data( 'changedItems' )[args.id] = true;
 
 				if ( !e.isChangeHighlighted ) {
 					$node.addClass( 'vui-changed' );
@@ -43,11 +49,15 @@
 
 			} ).on( 'vui-restore', function( e, args ) {
 
-				if ( me._changedItems[args.id] !== undefined ) {
-					delete me._changedItems[args.id];
+				if ( !isTrackingEnabled() ) {
+					return;
 				}
 
-				if ( Object.keys( me._changedItems ).length === 0 ) {
+				if ($node.data( 'changedItems' )[args.id] !== undefined ) {
+					delete $node.data( 'changedItems' )[args.id];
+				}
+
+				if ( Object.keys( $node.data( 'changedItems' ) ).length === 0 ) {
 					$node.removeClass( 'vui-changed' );
 				} 
 
@@ -61,12 +71,10 @@
 				.removeClass( 'vui-changed' )
 				.off( 'vui-change vui-restore' );
 
-			this._changedItems = { };
-
 		},
 
 		containsChanges: function() {
-			return ( Object.keys( this._changedItems ).length > 0 );
+			return ( Object.keys( $( this.element ).data( 'changedItems' ) ).length > 0 );
 		},
 
 		isHighlightingChanges: function () {
