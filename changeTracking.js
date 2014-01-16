@@ -26,10 +26,8 @@
 
 		_create: function() {
 
-			var $node = $( this.element );
+			var $node = $( this.element ).uniqueId();
 			var nodeName = $node.prop( 'nodeName' );
-
-			$node.uniqueId();
 
 			var getValue = function( $tempNode ) {
 
@@ -54,6 +52,11 @@
 			};
 
 			var triggerEvent = function( $target ) {
+
+				var $trackingContainer = $node.closest( '[data-track-changes="true"]' );
+				if ( $trackingContainer.length === 0 ) {
+					return;
+				}
 
 				var args = { 'id': $target.attr( 'id' ) };
 
