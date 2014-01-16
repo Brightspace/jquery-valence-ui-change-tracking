@@ -65,7 +65,7 @@
 	} );
 
 	vui.addClassInitializer(
-			'vui-field-row',
+			'vui-change-tracker',
 			function( node ) {
 				$( node ).vui_changeTracker();
 			}
