@@ -24,25 +24,30 @@
 
 	$.widget( 'vui.vui_changeTracker', {
 
+		_changedItems: {},
+
 		_create: function() {
 
+			var me = this;
+			
 			var $node = $( this.element );
-
-			var changedItems = {};
 
 			$node.on( 'vui-change', function( e, args ) {
 
-				changedItems[args.id] = true;
+				me._changedItems[args.id] = true;
 
-				$node.addClass( 'vui-changed' );
+				if ( !e.isChangeHighlighted ) {
+					$node.addClass( 'vui-changed' );
+					e.isChangeHighlighted = true;
+				}
 
 			} ).on( 'vui-restore', function( e, args ) {
 
-				if ( changedItems[args.id] !== undefined ) {
-					delete changedItems[args.id];
+				if ( me._changedItems[args.id] !== undefined ) {
+					delete me._changedItems[args.id];
 				}
 
-				if ( Object.keys( changedItems ).length === 0 ) {
+				if ( Object.keys( me._changedItems ).length === 0 ) {
 					$node.removeClass( 'vui-changed' );
 				} 
 
@@ -56,9 +61,15 @@
 				.removeClass( 'vui-changed' )
 				.off( 'vui-change vui-restore' );
 
+			this._changedItems = { };
+
 		},
 
-		hasChanged: function() {
+		containsChanges: function() {
+			return ( Object.keys( this._changedItems ).length > 0 );
+		},
+
+		isHighlightingChanges: function () {
 			return $( this.element ).hasClass( 'vui-changed' );
 		}
 
