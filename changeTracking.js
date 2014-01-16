@@ -60,13 +60,13 @@
 				if ( getValue( $target ) === $target.data( 'originalValue' ) ) {
 
 					$target
-						.removeClass( 'vui-changed' )
+						.data( 'hasChanged', false )
 						.trigger( 'vui-restore', args );
 
 				} else {
 
 					$target
-						.addClass( 'vui-changed' )
+						.data( 'hasChanged', true )
 						.trigger( 'vui-change', args );
 
 				}
@@ -81,7 +81,9 @@
 				}
 			}
 
-			$node.data( 'originalValue', getValue( $node ) );
+			$node
+				.data( 'originalValue', getValue( $node ) )
+				.data( 'hasChanged', false );
 
 			$node.on( 'change.vui', function( e ) {
 
@@ -119,7 +121,6 @@
 			var $node = $( this.element );
 
 			$node
-				.removeClass( 'vui-changed' )
 				.trigger( 'vui-restore', $node.attr( 'id' ) )
 				.off( 'change.vui' )
 				.removeUniqueId();
@@ -127,7 +128,7 @@
 		},
 
 		hasChanged: function() {
-			return $( this.element ).hasClass( 'vui-changed' );
+			return $( this.element ).data( 'hasChanged' );
 		}
 
 	} );
