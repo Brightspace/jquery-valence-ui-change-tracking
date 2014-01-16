@@ -79,6 +79,17 @@
 				}
 			}
 
+			$node.closest( '[data-track-changes="true"]' ).on( 'vui-reset', function() {
+
+				var args = { 'id': $node.attr( 'id' ) };
+
+				$node
+					.data( 'originalValue', getValue( $node ) )
+					.data( 'hasChanged', false )
+					.trigger( 'vui-restore', args );
+
+			} );
+
 			$node
 				.data( 'originalValue', getValue( $node ) )
 				.data( 'hasChanged', false )
