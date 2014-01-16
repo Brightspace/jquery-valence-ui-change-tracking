@@ -81,9 +81,8 @@
 
 			$node
 				.data( 'originalValue', getValue( $node ) )
-				.data( 'hasChanged', false );
-
-			$node.on( 'change.vui', function( e ) {
+				.data( 'hasChanged', false )
+				.on( 'change.vui', function( e ) {
 
 				var $target = $( e.target );
 
