@@ -26,41 +26,39 @@
 
 		_create: function() {
 
-			var $node = $( this.element ).uniqueId();
-			var nodeName = $node.prop( 'nodeName' );
+			var nodeName = this.element.prop( 'nodeName' );
 			var me = this;
 
-			if ( nodeName === 'INPUT' && $node.attr( 'type' ) === 'radio' ) {
-				var groupName = $node.prop( 'name' );
-				if ( groupName ) {
+			if( nodeName === 'INPUT' && this.element.attr( 'type' ) === 'radio' ) {
+				var groupName = this.element.prop( 'name' );
+				if( groupName ) {
 					var selectedValue = $( 'input[name="' + groupName + '"]:checked' ).val();
-					$node.data( 'selectedValue', selectedValue );
+					this.element.data( 'selectedValue', selectedValue );
 				}
 			}
 
-			$node
-				.closest( '[data-track-changes="true"]' )
-				.on( 'vui-reset', function() {
-					$node
-						.data( 'originalValue', me._getValue( $node ) )
-						.data( 'hasChanged', false )
-						.trigger( 'vui-restore', { 'id': $node.attr( 'id' ) } );
-				});
+			var evtData = { me: me };
 
-			$node
-				.data( 'originalValue', me._getValue( $node ) )
+			this.tracker = this.element
+				.closest( '[data-track-changes="true"]' );
+
+			this.tracker
+				.on( 'vui-reset', evtData, this._handleReset );
+
+			this.element
+				.uniqueId()
+				.data( 'originalValue', me._getValue( me.element ) )
 				.data( 'hasChanged', false )
-				.on( 'change.vui', { me: me }, this._handleChange );
+				.on( 'change.vui', evtData, this._handleChange );
 
 		},
 
 		_destroy: function () {
 
-			var $node = $( this.element );
-			var args = { 'id': $node.attr( 'id' ) };
+			this.tracker.off( 'vui-reset', this._handleReset );
 
-			$node
-				.trigger( 'vui-restore', args )
+			this.element
+				.trigger( 'vui-restore', { 'id': this.element.attr( 'id' ) } )
 				.off( 'change.vui' )
 				.removeUniqueId();
 
@@ -120,6 +118,17 @@
 			}
 
 			me._triggerEvent( $node );
+
+		},
+
+		_handleReset: function( evt ) {
+
+			var me = evt.data.me;
+
+			me.element
+				.data( 'originalValue', me._getValue( me.element ) )
+				.data( 'hasChanged', false )
+				.trigger( 'vui-restore', { 'id': me.element.attr( 'id' ) } );
 
 		},
 
