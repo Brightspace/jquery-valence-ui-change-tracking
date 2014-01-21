@@ -32,8 +32,9 @@
 			if( nodeName === 'INPUT' && this.element.attr( 'type' ) === 'radio' ) {
 				var groupName = this.element.prop( 'name' );
 				if( groupName ) {
-					var selectedValue = $( 'input[name="' + groupName + '"]:checked' ).val();
-					this.element.data( 'selectedValue', selectedValue );
+					var selected = $( 'input[name="' + groupName + '"]:checked' );
+					selected.uniqueId();
+					this.element.data( 'selectedId', selected.attr('id') );
 				}
 			}
 
@@ -94,27 +95,27 @@
 			var $node = me.element;
 			var node = $node.get(0);
 			var nodeName = $node.prop( 'nodeName' );
+			var selectedId = $node.data( 'selectedId' );
+			var id = $node.attr('id');
 
-			if( nodeName === 'INPUT' && $node.attr( 'type' ) === 'radio' && $node.prop( 'name' ) ) {
+			if( nodeName === 'INPUT' && $node.attr( 'type' ) === 'radio' ) {
 
 				var groupName = $node.prop( 'name' );
-				$( 'input[name="' + groupName + '"]' ).each( function( i ) {
+				if( groupName ) {
 
-					if( this !== node ) {
-
+					$( 'input[name="' + groupName + '"]' ).each( function( i ) {
+						
 						var $this = $( this );
 
-						if ( $this.val() === $node.data( 'selectedValue' ) ) {
+						if( this !== node && $this.attr('id') === selectedId ) {
 							me._triggerEvent( $this );
 						}
 
-						$this.data( 'selectedValue', $node.val() );
-					}
+						$this.data( 'selectedId', id );
 
-				} );
+					} );
 
-				$node.data( 'selectedValue', $node.val() );
-
+				}
 			}
 
 			me._triggerEvent( $node );
