@@ -86,9 +86,10 @@
 		_destroy: function () {
 
 			var $node = $( this.element );
+			var args = { 'id': $node.attr( 'id' ) };
 
 			$node
-				.trigger( 'vui-restore', $node.attr( 'id' ) )
+				.trigger( 'vui-restore', args )
 				.off( 'change.vui' )
 				.removeUniqueId();
 
