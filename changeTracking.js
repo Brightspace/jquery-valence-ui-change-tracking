@@ -30,26 +30,6 @@
 			var nodeName = $node.prop( 'nodeName' );
 			var me = this;
 
-			var triggerEvent = function( $target ) {
-
-				var args = { 'id': $target.attr( 'id' ) };
-
-				if( me._getValue( $target ) === $target.data( 'originalValue' ) ) {
-
-					$target
-						.data( 'hasChanged', false )
-						.trigger( 'vui-restore', args );
-
-				} else {
-
-					$target
-						.data( 'hasChanged', true )
-						.trigger( 'vui-change', args );
-
-				}
-
-			};
-
 			if ( nodeName === 'INPUT' && $node.attr( 'type' ) === 'radio' ) {
 				var groupName = $node.prop( 'name' );
 				if ( groupName ) {
@@ -85,7 +65,7 @@
 							var $this = $( this );
 
 							if ( $this.val() === $target.data( 'selectedValue' ) ) {
-								triggerEvent( $this );
+								me._triggerEvent( $this );
 							}
 
 							$this.data( 'selectedValue', $target.val() );
@@ -97,7 +77,7 @@
 
 				}
 
-				triggerEvent( $target );
+				me._triggerEvent( $target );
 
 			} );
 
@@ -134,6 +114,19 @@
 			}
 
 			return node.value;
+
+		},
+
+		_triggerEvent: function( $target ) {
+
+			var args = { 'id': $target.attr( 'id' ) };
+
+			var hasChanged = this._getValue( $target ) !==
+				$target.data( 'originalValue' );
+
+			$target
+				.data( 'hasChanged', hasChanged )
+				.trigger( hasChanged ? 'vui-change' : 'vui-restore', args );
 
 		},
 
