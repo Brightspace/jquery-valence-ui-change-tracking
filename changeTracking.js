@@ -38,48 +38,19 @@
 				}
 			}
 
-			$node.closest( '[data-track-changes="true"]' ).on( 'vui-reset', function() {
-
-				var args = { 'id': $node.attr( 'id' ) };
-
-				$node
-					.data( 'originalValue', me._getValue( $node ) )
-					.data( 'hasChanged', false )
-					.trigger( 'vui-restore', args );
-
-			} );
+			$node
+				.closest( '[data-track-changes="true"]' )
+				.on( 'vui-reset', function() {
+					$node
+						.data( 'originalValue', me._getValue( $node ) )
+						.data( 'hasChanged', false )
+						.trigger( 'vui-restore', { 'id': $node.attr( 'id' ) } );
+				});
 
 			$node
 				.data( 'originalValue', me._getValue( $node ) )
 				.data( 'hasChanged', false )
-				.on( 'change.vui', function( e ) {
-
-				var $target = $( e.target );
-
-				if ( nodeName === 'INPUT' && $node.attr( 'type' ) === 'radio' && $node.prop( 'name' ) ) {
-
-					$( 'input[name="' + groupName + '"]' ).each( function( i ) {
-
-						if ( this !== e.target ) {
-
-							var $this = $( this );
-
-							if ( $this.val() === $target.data( 'selectedValue' ) ) {
-								me._triggerEvent( $this );
-							}
-
-							$this.data( 'selectedValue', $target.val() );
-						}
-
-					} );
-
-					$target.data( 'selectedValue', $target.val() );
-
-				}
-
-				me._triggerEvent( $target );
-
-			} );
+				.on( 'change.vui', { me: me }, this._handleChange );
 
 		},
 
@@ -115,6 +86,40 @@
 			}
 
 			return node.value;
+
+		},
+
+		_handleChange: function( evt ) {
+
+			var me = evt.data.me;
+
+			var $node = me.element;
+			var node = $node.get(0);
+			var nodeName = $node.prop( 'nodeName' );
+
+			if( nodeName === 'INPUT' && $node.attr( 'type' ) === 'radio' && $node.prop( 'name' ) ) {
+
+				var groupName = $node.prop( 'name' );
+				$( 'input[name="' + groupName + '"]' ).each( function( i ) {
+
+					if( this !== node ) {
+
+						var $this = $( this );
+
+						if ( $this.val() === $node.data( 'selectedValue' ) ) {
+							me._triggerEvent( $this );
+						}
+
+						$this.data( 'selectedValue', $node.val() );
+					}
+
+				} );
+
+				$node.data( 'selectedValue', $node.val() );
+
+			}
+
+			me._triggerEvent( $node );
 
 		},
 
