@@ -28,34 +28,13 @@
 
 			var $node = $( this.element ).uniqueId();
 			var nodeName = $node.prop( 'nodeName' );
-
-			var getValue = function( $tempNode ) {
-
-				var node = $tempNode.get(0);
-
-				if ( nodeName === 'SELECT' ) {
-					return $tempNode.val();
-				}
-
-				if ( nodeName === 'INPUT' ) {
-
-					var inputType = $tempNode.attr( 'type' );
-
-					if ( inputType === 'checkbox' || inputType === 'radio' ) {
-						return node.checked;
-					}
-
-				}
-
-				return node.value;
-
-			};
+			var me = this;
 
 			var triggerEvent = function( $target ) {
 
 				var args = { 'id': $target.attr( 'id' ) };
 
-				if ( getValue( $target ) === $target.data( 'originalValue' ) ) {
+				if( me._getValue( $target ) === $target.data( 'originalValue' ) ) {
 
 					$target
 						.data( 'hasChanged', false )
@@ -84,14 +63,14 @@
 				var args = { 'id': $node.attr( 'id' ) };
 
 				$node
-					.data( 'originalValue', getValue( $node ) )
+					.data( 'originalValue', me._getValue( $node ) )
 					.data( 'hasChanged', false )
 					.trigger( 'vui-restore', args );
 
 			} );
 
 			$node
-				.data( 'originalValue', getValue( $node ) )
+				.data( 'originalValue', me._getValue( $node ) )
 				.data( 'hasChanged', false )
 				.on( 'change.vui', function( e ) {
 
@@ -132,6 +111,29 @@
 				.trigger( 'vui-restore', $node.attr( 'id' ) )
 				.off( 'change.vui' )
 				.removeUniqueId();
+
+		},
+
+		_getValue: function( $node ) {
+
+			var node = $node.get(0);
+			var nodeName = $node.prop( 'nodeName' );
+
+			if( nodeName === 'SELECT' ) {
+				return $node.val();
+			}
+
+			if( nodeName === 'INPUT' ) {
+
+				var inputType = $node.attr( 'type' );
+
+				if( inputType === 'checkbox' || inputType === 'radio' ) {
+					return node.checked;
+				}
+
+			}
+
+			return node.value;
 
 		},
 
