@@ -26,42 +26,44 @@
 
 		_create: function() {
 
-			var $node = $( this.element )
-				.data( 'changedItems', { } );
+			var me = this;
 
 			var isTrackingEnabled = function() {
-				var $trackingContainer = $node.closest( '[data-track-changes="true"]' );
-				return ( $trackingContainer.length > 0 );
+				return ( me.element.closest(
+						'[data-track-changes="true"]'
+					).length > 0 );
 			};
 
-			$node.on( 'vui-change', function( e, args ) {
+			this.element
+				.data( 'changedItems', { } )
+				.on( 'vui-change', function( e, args ) {
 
-				if ( !isTrackingEnabled() ) {
-					return;
-				}
+					if ( !isTrackingEnabled() ) {
+						return;
+					}
 
-				$node.data( 'changedItems' )[args.id] = true;
+					me.element.data( 'changedItems' )[args.id] = true;
 
-				if ( !e.isChangeHighlighted ) {
-					$node.addClass( 'vui-changed' );
-					e.isChangeHighlighted = true;
-				}
+					if ( !e.isChangeHighlighted ) {
+						me.element.addClass( 'vui-changed' );
+						e.isChangeHighlighted = true;
+					}
 
-			} ).on( 'vui-restore', function( e, args ) {
+				} ).on( 'vui-restore', function( e, args ) {
 
-				if ( !isTrackingEnabled() ) {
-					return;
-				}
+					if( !isTrackingEnabled() ) {
+						return;
+					}
 
-				if ($node.data( 'changedItems' )[args.id] !== undefined ) {
-					delete $node.data( 'changedItems' )[args.id];
-				}
+					if( me.element.data( 'changedItems' )[args.id] !== undefined ) {
+						delete me.element.data( 'changedItems' )[args.id];
+					}
 
-				if ( Object.keys( $node.data( 'changedItems' ) ).length === 0 ) {
-					$node.removeClass( 'vui-changed' );
-				} 
+					if ( Object.keys( me.element.data( 'changedItems' ) ).length === 0 ) {
+						me.element.removeClass( 'vui-changed' );
+					} 
 
-			} );
+				} );
 
 		},
 
@@ -74,7 +76,7 @@
 		},
 
 		containsChanges: function() {
-			return ( Object.keys( $( this.element ).data( 'changedItems' ) ).length > 0 );
+			return ( Object.keys( this.element.data( 'changedItems' ) ).length > 0 );
 		},
 
 		isHighlightingChanges: function () {
