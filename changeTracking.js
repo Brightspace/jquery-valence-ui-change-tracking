@@ -58,8 +58,11 @@
 
 			this.tracker.off( 'vui-reset', this._handleReset );
 
+			if( this.hasChanged() ) {
+				this.element.trigger( 'vui-restore' );
+			}
+
 			this.element
-				.trigger( 'vui-restore' )
 				.off( 'change.vui' )
 				.removeUniqueId();
 
@@ -126,10 +129,14 @@
 
 			var me = evt.data.me;
 
+			if( !evt.data.me.hasChanged() ) {
+				return;
+			}
+
 			me.element
 				.data( 'originalValue', me._getValue( me.element ) )
 				.data( 'hasChanged', false )
-				.trigger( 'vui-restore', { 'id': me.element.attr( 'id' ) } );
+				.trigger( 'vui-restore' );
 
 		},
 
