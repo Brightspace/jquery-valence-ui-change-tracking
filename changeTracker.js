@@ -35,33 +35,35 @@
 			};
 
 			this.element
-				.data( 'changedItems', { } )
-				.on( 'vui-change', function( e, args ) {
+				.data( 'changedItems', {} )
+				.on( 'vui-change', function( e ) {
 
-					if ( !isTrackingEnabled() ) {
+					var id = $( e.target ).attr('id');
+					if( !isTrackingEnabled() || !id ) {
 						return;
 					}
 
-					me.element.data( 'changedItems' )[args.id] = true;
+					me.element.data( 'changedItems' )[id] = true;
 
-					if ( !e.isChangeHighlighted ) {
+					if( !e.isChangeHighlighted ) {
 						me.element.addClass( 'vui-changed' );
 						e.isChangeHighlighted = true;
 					}
 
-				} ).on( 'vui-restore', function( e, args ) {
+				} ).on( 'vui-restore', function( e ) {
 
-					if( !isTrackingEnabled() ) {
+					var id = $( e.target ).attr('id');
+					if( !isTrackingEnabled() || !id ) {
 						return;
 					}
 
 					var changedItems = me.element.data( 'changedItems' );
 
-					if( changedItems[args.id] !== undefined ) {
-						delete changedItems[args.id];
+					if( changedItems[id] !== undefined ) {
+						delete changedItems[id];
 					}
 
-					if ( Object.keys( changedItems ).length === 0 ) {
+					if( Object.keys( changedItems ).length === 0 ) {
 						me.element.removeClass( 'vui-changed' );
 					} 
 

@@ -59,7 +59,7 @@
 			this.tracker.off( 'vui-reset', this._handleReset );
 
 			this.element
-				.trigger( 'vui-restore', { 'id': this.element.attr( 'id' ) } )
+				.trigger( 'vui-restore' )
 				.off( 'change.vui' )
 				.removeUniqueId();
 
@@ -135,14 +135,12 @@
 
 		_triggerEvent: function( $target ) {
 
-			var args = { 'id': $target.attr( 'id' ) };
-
 			var hasChanged = this._getValue( $target ) !==
 				$target.data( 'originalValue' );
 
 			$target
 				.data( 'hasChanged', hasChanged )
-				.trigger( hasChanged ? 'vui-change' : 'vui-restore', args );
+				.trigger( hasChanged ? 'vui-change' : 'vui-restore' );
 
 		},
 
