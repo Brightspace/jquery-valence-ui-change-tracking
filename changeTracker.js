@@ -55,11 +55,13 @@
 						return;
 					}
 
-					if( me.element.data( 'changedItems' )[args.id] !== undefined ) {
-						delete me.element.data( 'changedItems' )[args.id];
+					var changedItems = me.element.data( 'changedItems' );
+
+					if( changedItems[args.id] !== undefined ) {
+						delete changedItems[args.id];
 					}
 
-					if ( Object.keys( me.element.data( 'changedItems' ) ).length === 0 ) {
+					if ( Object.keys( changedItems ).length === 0 ) {
 						me.element.removeClass( 'vui-changed' );
 					} 
 
