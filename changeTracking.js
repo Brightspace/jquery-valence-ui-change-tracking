@@ -129,7 +129,7 @@
 
 			var me = evt.data.me;
 
-			if( !evt.data.me.hasChanged() ) {
+			if( !me.hasChanged() ) {
 				return;
 			}
 
