@@ -24,6 +24,10 @@
 
 	$.widget( 'vui.vui_changeTracker', {
 
+		options: {
+			showChanges: true
+		},
+
 		_create: function() {
 
 			var me = this;
@@ -33,6 +37,11 @@
 						'[data-track-changes="true"]'
 					).length > 0 );
 			};
+
+			var showChangesAttr = this.element.data('show-changes');
+			if( showChangesAttr === false ) {
+				this.options.showChanges = false;
+			}
 
 			this.element
 				.data( 'changedItems', {} )
@@ -45,9 +54,9 @@
 
 					me.element.data( 'changedItems' )[id] = true;
 
-					if( !e.isChangeHighlighted ) {
+					if( me.options.showChanges && !e.isChangeShown ) {
 						me.element.addClass( 'vui-changed' );
-						e.isChangeHighlighted = true;
+						e.isChangeShown = true;
 					}
 
 				} ).on( 'vui-restore', function( e ) {
@@ -63,7 +72,8 @@
 						delete changedItems[id];
 					}
 
-					if( Object.keys( changedItems ).length === 0 ) {
+					if( me.options.showChanges &&
+						Object.keys( changedItems ).length === 0 ) {
 						me.element.removeClass( 'vui-changed' );
 					} 
 
@@ -83,7 +93,7 @@
 			return ( Object.keys( this.element.data( 'changedItems' ) ).length > 0 );
 		},
 
-		isHighlightingChanges: function () {
+		isChangeShown: function () {
 			return $( this.element ).hasClass( 'vui-changed' );
 		}
 
