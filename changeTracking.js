@@ -40,11 +40,7 @@
 
 			var evtData = { me: me };
 
-			this.tracker = this.element
-				.closest( '[data-track-changes="true"]' );
-
-			this.tracker
-				.on( 'vui-reset', evtData, this._handleReset );
+			$( document ).on( 'vui-reset', evtData, this._handleReset );
 
 			this.element
 				.uniqueId()
@@ -56,11 +52,11 @@
 
 		_destroy: function () {
 
-			this.tracker.off( 'vui-reset', this._handleReset );
-
 			if( this.hasChanged() ) {
 				this.element.trigger( 'vui-restore' );
 			}
+
+			$( document ).off( 'vui-reset', this._handleReset );
 
 			this.element
 				.off( 'change.vui' )
@@ -129,7 +125,10 @@
 
 			var me = evt.data.me;
 
-			if( !me.hasChanged() ) {
+			var isParentTracker = me.element
+				.closest( '[data-track-changes="true"]' ).is( evt.target );
+
+			if( !isParentTracker || !me.hasChanged() ) {
 				return;
 			}
 
