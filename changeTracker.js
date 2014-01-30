@@ -32,14 +32,8 @@
 
 			var me = this;
 
-			var isTrackingEnabled = function() {
-				return ( me.element.closest(
-						'[data-track-changes="true"]'
-					).length > 0 );
-			};
-
-			var showChangesAttr = this.element.data('show-changes');
-			if( showChangesAttr === false ) {
+			var showChangesAttr = this.element.attr('data-show-changes');
+			if( showChangesAttr === 'false' ) {
 				this.options.showChanges = false;
 			}
 
@@ -48,11 +42,15 @@
 				.on( 'vui-change', function( e ) {
 
 					var id = $( e.target ).attr('id');
-					if( !isTrackingEnabled() || !id ) {
+					if( !id ) {
 						return;
 					}
 
 					me.element.data( 'changedItems' )[id] = true;
+
+					if( !me._isTrackingEnabled() ) {
+						return;
+					}
 
 					if( me.options.showChanges && !e.isChangeShown ) {
 						me.element.addClass( 'vui-changed' );
@@ -62,14 +60,17 @@
 				} ).on( 'vui-restore', function( e ) {
 
 					var id = $( e.target ).attr('id');
-					if( !isTrackingEnabled() || !id ) {
+					if( !id ) {
 						return;
 					}
 
 					var changedItems = me.element.data( 'changedItems' );
-
 					if( changedItems[id] !== undefined ) {
 						delete changedItems[id];
+					}
+
+					if( !me._isTrackingEnabled() ) {
+						return;
 					}
 
 					if( me.options.showChanges &&
@@ -89,12 +90,35 @@
 
 		},
 
+		_isTrackingEnabled: function() {
+
+			var closest = this.element.closest( '[data-track-changes]' );
+			if( closest.length === 1 ) {
+				return closest.attr( 'data-track-changes' ) === 'true';
+			}
+			
+			return false;
+
+		},
+
 		containsChanges: function() {
 			return ( Object.keys( this.element.data( 'changedItems' ) ).length > 0 );
 		},
 
+		hasElementChanged: function( elem ) {
+
+			var id = $( elem ).attr('id');
+			if( !id ) {
+				return false;
+			}
+
+			var hasChanged = ( this.element.data( 'changedItems' )[id] === true );
+			return hasChanged;
+
+		},
+
 		isChangeShown: function () {
-			return $( this.element ).hasClass( 'vui-changed' );
+			return this.element.hasClass( 'vui-changed' );
 		}
 
 	} );
