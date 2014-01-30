@@ -125,9 +125,7 @@
 
 			var me = evt.data.me;
 
-			var isParentTracker = me.element
-				.closest( '[data-track-changes="true"]' ).is( evt.target );
-
+			var isParentTracker = ( me.element.closest( evt.target ).length > 0 );
 			if( !isParentTracker || !me.hasChanged() ) {
 				return;
 			}
