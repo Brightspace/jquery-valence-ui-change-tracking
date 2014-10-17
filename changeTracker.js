@@ -1,26 +1,8 @@
 ﻿/*jslint browser: true*/
 
-( function( vui ) {
+( function() {
 
 	'use strict';
-
-	// Check if the provided vui global is defined, otherwise try to require it if
-	// we're in a CommonJS environment; otherwise we'll just fail out
-	if( vui === undefined ) {
-		if( typeof require === 'function' ) {
-			vui = require('../../core');
-		} else {
-			throw new Error('load vui first');
-		}
-	}
-
-	// Export the vui object if we're in a CommonJS environment.
-	// It will already be on the window otherwise
-	if( typeof module === 'object' && typeof module.exports === 'object' ) {
-		module.exports = vui;
-	}
-
-	var $ = vui.$;
 
 	$.widget( 'vui.vui_changeTracker', {
 
@@ -76,7 +58,7 @@
 					if( me.options.showChanges &&
 						Object.keys( changedItems ).length === 0 ) {
 						me.element.removeClass( 'vui-changed' );
-					} 
+					}
 
 				} );
 
@@ -96,7 +78,7 @@
 			if( closest.length === 1 ) {
 				return closest.attr( 'data-track-changes' ) === 'true';
 			}
-			
+
 			return false;
 
 		},
@@ -123,11 +105,4 @@
 
 	} );
 
-	vui.addClassInitializer(
-			'vui-change-tracker',
-			function( node ) {
-				$( node ).vui_changeTracker();
-			}
-		);
-
-} )( window.vui );
+} )();
