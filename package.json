@@ -1,0 +1,25 @@
+{
+  "name": "vui-change-tracking-jquery",
+  "version": "0.0.0",
+  "description": "jQuery-based widgets, events and LESS mixins which can be used to",
+  "main": "changeTracker.js",
+  "scripts": {
+    "test": "gulp && gulp test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Desire2Learn-Valence/valence-ui-change-tracking-jquery.git"
+  },
+  "keywords": [
+    "vui",
+    "valence-ui",
+    "d2l",
+    "jquery"
+  ],
+  "author": "D2L Corporation",
+  "license": "Apache 2.0",
+  "bugs": {
+    "url": "https://github.com/Desire2Learn-Valence/valence-ui-change-tracking-jquery/issues"
+  },
+  "homepage": "https://github.com/Desire2Learn-Valence/valence-ui-change-tracking-jquery"
+}
