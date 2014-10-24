@@ -1,26 +1,209 @@
 ( function() {
 	'use strict';
 
-	describe( 'vui', function() {
+	describe( 'vui.changeTracker', function() {
 
 		var node;
 
 		beforeEach( function () {
 			jasmine.addMatchers( d2l.jasmine.matchers );
+
 			node = document.body.appendChild( document.createElement( 'div' ) );
+			node.setAttribute( 'data-track-changes', 'true' );
+
 		} );
 
 		afterEach( function() {
 			document.body.removeChild( node );
 		} );
 
-		describe( 'change tracker', function() {
+		describe( 'create', function() {
+
+			var $tracker;
 
 			beforeEach( function () {
+				$tracker = $( "<div class='vui-change-tracker'></div>" ).appendTo( node );
 			} );
 
-			it( 'todo', function() {
-				expect( true ).toBe( true );
+			it( 'binds the input elements using widget method', function() {
+				$tracker.vui_changeTracker();
+				expect( $tracker.data( 'vui-vui_changeTracker' ) ).toBeDefined();
+			} );
+
+		} );
+
+		describe( 'destroy', function() {
+
+			var $tracker;
+
+			beforeEach( function () {
+				$tracker = $( "<div class='vui-change-tracker'></div>" )
+					.appendTo( node )
+					.vui_changeTracker();
+			} );
+
+			it( 'unbinds input from widget when destroy is called', function() {
+				$tracker.vui_changeTracker( 'destroy' );
+				expect( $tracker.data( 'vui-vui_changeTracker' ) ).not.toBeDefined();
+			} );
+
+		} );
+
+		describe( 'containsChanges', function() {
+
+			var $tracker, $input1, $input2;
+
+			beforeEach( function () {
+
+				$tracker = $( "<div class='vui-change-tracker'></div>" )
+					.appendTo( node )
+					.vui_changeTracker();
+
+				$input1 = $( "<input class='vui-input' type='checkbox' />" )
+					.appendTo( $tracker )
+					.vui_changeTracking();
+
+				$input2 = $( "<input class='vui-input' type='text' />" )
+					.appendTo( $tracker )
+					.vui_changeTracking();
+
+			} );
+
+			it( 'returns false when there are no changes', function() {
+				expect( $tracker.vui_changeTracker( 'containsChanges' ) ).toBeFalsy();
+			} );
+
+			it( 'returns true when there are changes', function() {
+				$input1.click();
+				expect( $tracker.vui_changeTracker( 'containsChanges' ) ).toBeTruthy();
+			} );
+
+			it( 'returns false after changed item is removed', function() {
+				$input1.click();
+				$input1.vui_changeTracking( 'destroy' );
+				expect( $tracker.vui_changeTracker( 'containsChanges' ) ).toBeFalsy();
+			} );
+
+		} );
+
+		describe( 'hasElementChanged', function() {
+
+			var $tracker, $input1, $input2;
+
+			beforeEach( function () {
+
+				$tracker = $( "<div class='vui-change-tracker'></div>" )
+					.appendTo( node )
+					.vui_changeTracker();
+
+				$input1 = $( "<input class='vui-input' type='checkbox' />" )
+					.appendTo( $tracker )
+					.vui_changeTracking();
+
+				$input2 = $( "<input class='vui-input' type='checkbox' />" )
+					.appendTo( $tracker );
+
+			} );
+
+			it( 'returns false when there are no changes', function() {
+				expect( $tracker.vui_changeTracker( 'hasElementChanged', $input1.get( 0 ) ) ).toBeFalsy();
+			} );
+
+			it( 'returns true when there are changes', function() {
+				$input1.click();
+				expect( $tracker.vui_changeTracker( 'hasElementChanged', $input1.get( 0 ) ) ).toBeTruthy();
+			} );
+
+			it( 'returns false when with changes does not have an id', function() {
+				$input2.click();
+				expect( $tracker.vui_changeTracker( 'hasElementChanged', $input2.get( 0 ) ) ).toBeFalsy();
+			} );
+
+		} );
+
+		describe( 'isChangesShown', function() {
+
+			var $tracker, $input;
+
+			describe( 'showChanges enabled', function() {
+
+				describe( 'track changes enabled', function() {
+
+					beforeEach( function () {
+
+						$tracker = $( "<div class='vui-change-tracker' data-show-changes='true'></div>" )
+							.appendTo( node )
+							.vui_changeTracker();
+
+						$input = $( "<input class='vui-input' type='checkbox' />" )
+							.appendTo( $tracker )
+							.vui_changeTracking();
+
+					} );
+
+					it( 'returns false when there are no changes', function() {
+						expect( $tracker.vui_changeTracker( 'isChangeShown' ) ).toBeFalsy();
+					} );
+
+					it( 'returns true when there are changes', function() {
+						$input.click();
+						expect( $tracker.vui_changeTracker( 'isChangeShown' ) ).toBeTruthy();
+					} );
+
+				} );
+
+				describe( 'track changes disabled', function() {
+
+					beforeEach( function () {
+
+						node.setAttribute( 'data-track-changes', 'false' );
+
+						$tracker = $( "<div class='vui-change-tracker' data-show-changes='true'></div>" )
+							.appendTo( node )
+							.vui_changeTracker();
+
+						$input = $( "<input class='vui-input' type='checkbox' />" )
+							.appendTo( $tracker )
+							.vui_changeTracking();
+
+					} );
+
+					it( 'returns false when there are no changes', function() {
+						expect( $tracker.vui_changeTracker( 'isChangeShown' ) ).toBeFalsy();
+					} );
+
+					it( 'returns false when there are changes', function() {
+						$input.click();
+						expect( $tracker.vui_changeTracker( 'isChangeShown' ) ).toBeFalsy();
+					} );
+
+				} );
+
+			} );
+
+			describe( 'showChanges disabled', function() {
+
+				beforeEach( function () {
+
+					$tracker = $( "<div class='vui-change-tracker' data-show-changes='false'></div>" )
+						.appendTo( node )
+						.vui_changeTracker();
+
+					$input = $( "<input class='vui-input' type='checkbox' />" )
+						.appendTo( $tracker )
+						.vui_changeTracking();
+
+				} );
+
+				it( 'returns false when there are no changes', function() {
+					expect( $tracker.vui_changeTracker( 'isChangeShown' ) ).toBeFalsy();
+				} );
+
+				it( 'returns false when there are changes', function() {
+					$input.click();
+					expect( $tracker.vui_changeTracker( 'isChangeShown' ) ).toBeFalsy();
+				} );
+
 			} );
 
 		} );
