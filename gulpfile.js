@@ -46,9 +46,6 @@ gulp.task( 'test', [ 'lib' ], function () {
 		preprocessors: {
 			'changeTracker.js': ['coverage'],
 			'changeTracking.js': ['coverage']
-		},
-		coverageReporter: {
-			type: 'lcov', dir: 'test/output/coverage/'
 		}
 	} ) ;
 } );
