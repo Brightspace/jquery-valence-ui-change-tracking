@@ -6,7 +6,7 @@
 		var node;
 
 		beforeEach( function () {
-			jasmine.addMatchers( d2l.jasmine.matchers );
+			jasmine.addMatchers( vui.jasmine.dom.matchers );
 			node = document.body.appendChild( document.createElement( 'div' ) );
 		} );
 
