@@ -1,6 +1,6 @@
 {
   "name": "vui-change-tracking-jquery",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "description": "jQuery-based widgets, events and LESS mixins which can be used to",
   "main": "changeTracker.js",
   "scripts": {
