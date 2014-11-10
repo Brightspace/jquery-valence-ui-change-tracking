@@ -8,7 +8,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/Desire2Learn-Valence/valence-ui-change-tracking-jquery.git"
+    "url": "https://github.com/Brightspace/valence-ui-change-tracking-jquery.git"
   },
   "keywords": [
     "vui",
@@ -19,9 +19,9 @@
   "author": "D2L Corporation",
   "license": "Apache 2.0",
   "bugs": {
-    "url": "https://github.com/Desire2Learn-Valence/valence-ui-change-tracking-jquery/issues"
+    "url": "https://github.com/Brightspace/valence-ui-change-tracking-jquery/issues"
   },
-  "homepage": "https://github.com/Desire2Learn-Valence/valence-ui-change-tracking-jquery",
+  "homepage": "https://github.com/Brightspace/valence-ui-change-tracking-jquery",
   "devDependencies": {
     "del": "^0.1.3",
     "gulp": "^3.8.8",
