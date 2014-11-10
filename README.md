@@ -9,7 +9,7 @@ visually indicate unsaved changes to form inputs.
 
 [npm-url]: https://npmjs.org/package/vui-change-tracking-jquery
 [npm-image]: https://badge.fury.io/js/vui-change-tracking-jquery.png
-[ci-image]: https://travis-ci.org/Desire2Learn-Valence/valence-ui-change-tracking-jquery.svg?branch=master
-[ci-url]: https://travis-ci.org/Desire2Learn-Valence/valence-ui-change-tracking-jquery
-[coverage-image]: https://coveralls.io/repos/Desire2Learn-Valence/valence-ui-change-tracking-jquery/badge.png?branch=master
-[coverage-url]: https://coveralls.io/r/Desire2Learn-Valence/valence-ui-change-tracking-jquery?branch=master
+[ci-image]: https://travis-ci.org/Brightspace/valence-ui-change-tracking-jquery.svg?branch=master
+[ci-url]: https://travis-ci.org/Brightspace/valence-ui-change-tracking-jquery
+[coverage-image]: https://coveralls.io/repos/Brightspace/valence-ui-change-tracking-jquery/badge.png?branch=master
+[coverage-url]: https://coveralls.io/r/Brightspace/valence-ui-change-tracking-jquery?branch=master
