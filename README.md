@@ -6,30 +6,6 @@
 jQuery-based widgets, events and LESS mixins which can be used to
 visually indicate unsaved changes to form inputs.
 
-##Installation
-
-Install from NPM:
-
-```shell
-npm install vui-change-tracking-jquery
-```
-
-##Usage
-
-Under construction.
-
-##Building
-
-Under construction.
-
-## Contributing
-
-### Code Style
-
-This repository is configured with [EditorConfig](http://editorconfig.org) rules
-and contributions should make use of them. See the valence-ui [Code Style wiki
-page](https://github.com/Desire2Learn-Valence/valence-ui-helpers/wiki/Code-Style)
-for details.
 
 [npm-url]: https://npmjs.org/package/vui-change-tracking-jquery
 [npm-image]: https://badge.fury.io/js/vui-change-tracking-jquery.png
