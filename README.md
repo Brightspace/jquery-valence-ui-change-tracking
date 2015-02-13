@@ -9,7 +9,7 @@ The **vui-change-tracking-jquery** library provides jQuery-based widgets, events
 See the [VUI Best Practices & Style Guide](https://github.com/Brightspace/valence-ui-docs/wiki/Best-Practices-&-Style-Guide) for information on VUI naming conventions, plus information about the [EditorConfig](http://editorconfig.org) rules used in this repo.
 
 [npm-url]: https://npmjs.org/package/vui-change-tracking-jquery
-[npm-image]: https://img.shields.io/npm/v/-change-tracking-jquery.svg
+[npm-image]: https://img.shields.io/npm/v/vui-change-tracking-jquery.svg
 [ci-image]: https://travis-ci.org/Brightspace/valence-ui-change-tracking-jquery.svg?branch=master
 [ci-url]: https://travis-ci.org/Brightspace/valence-ui-change-tracking-jquery
 [coverage-image]: https://img.shields.io/coveralls/Brightspace/valence-ui-change-tracking-jquery.svg
