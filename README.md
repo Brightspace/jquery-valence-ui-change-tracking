@@ -10,7 +10,7 @@ See the [VUI Best Practices & Style Guide](https://github.com/Brightspace/valenc
 
 [npm-url]: https://npmjs.org/package/jquery-vui-change-tracking
 [npm-image]: https://img.shields.io/npm/v/jquery-vui-change-tracking.svg
-[ci-image]: https://travis-ci.org/Brightspace/valence-ui-change-tracking-jquery.svg?branch=master
-[ci-url]: https://travis-ci.org/Brightspace/valence-ui-change-tracking-jquery
+[ci-image]: https://travis-ci.org/Brightspace/jquery-valence-ui-change-tracking.svg?branch=master
+[ci-url]: https://travis-ci.org/Brightspace/jquery-valence-ui-change-tracking
 [coverage-image]: https://img.shields.io/coveralls/Brightspace/jquery-valence-ui-change-tracking.svg
 [coverage-url]: https://coveralls.io/r/Brightspace/jquery-valence-ui-change-tracking?branch=master
