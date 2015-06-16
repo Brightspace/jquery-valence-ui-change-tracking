@@ -10,7 +10,7 @@
     "pretest": "npm run build",
     "lint": "jshint changeTracker.js changeTracking.js && csslint changeTracking.css",
     "test": "npm run lint && karma start karma.conf.js",
-    "report-coverage": "lcov-result-merger 'test/output/coverage/*/lcov/lcov.info' | coveralls"
+    "report-coverage": "lcov-result-merger 'test/output/coverage/*/lcov.info' | coveralls"
   },
   "repository": {
     "type": "git",
