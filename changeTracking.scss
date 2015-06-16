@@ -1,0 +1,7 @@
+
+$vui-changed-color: #e5eff2 !default;
+$vui-changed-color-hover: #dee8eb !default;
+
+@mixin vui-changed() {
+	background-color: $vui-changed-color;
+}

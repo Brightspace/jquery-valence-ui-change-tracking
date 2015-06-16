@@ -1,4 +1,4 @@
 node_modules/
 lib/
-test/output/
+test/output
 changeTracking.css

@@ -1,5 +1,6 @@
+
 @import 'changeTracking';
 
 .vui-changed {
-	#vui.changed();
+	@include vui-changed;
 }
