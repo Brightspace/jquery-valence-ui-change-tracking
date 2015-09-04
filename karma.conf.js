@@ -15,9 +15,9 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'lib/jquery/jquery.min.js',
-      'lib/jquery.ui/ui/jquery.ui.core.js',
-      'lib/jquery.ui/ui/jquery.ui.widget.js',
+      'bower_components/jquery/jquery.min.js',
+      'bower_components/jquery.ui/ui/jquery.ui.core.js',
+      'bower_components/jquery.ui/ui/jquery.ui.widget.js',
       'changeTracker.js',
       'changeTracking.js',
       { pattern: 'changeTracking.css', included: true },

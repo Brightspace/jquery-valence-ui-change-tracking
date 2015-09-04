@@ -1,13 +1,12 @@
+bower_components
+node_modules
+test
 .editorconfig
 .gitattributes
 .gitignore
 .npmignore
-.bowerrc
 .jshintrc
 .travis.yml
 karma.conf.js
 bower.json
-node_modules
-lib
-test
 changeTracking.css.scss

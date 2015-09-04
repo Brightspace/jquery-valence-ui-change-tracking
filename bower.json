@@ -1,10 +1,16 @@
 {
   "name": "jquery-vui-change-tracking",
-  "private": true,
+  "main": "changeTracking.scss",
+  "license": "Apache-2.0",
   "ignore": [
-    "**/.*",
-    "node_modules",
-    "bower_components"
+      "test",
+      ".editorconfig",
+      ".gitignore",
+      ".jshintrc",
+      ".npmignore",
+      ".travis.yml",
+      "karma.conf.js",
+      "package.json"
   ],
   "devDependencies": {
     "jquery": "~2.0.3",
