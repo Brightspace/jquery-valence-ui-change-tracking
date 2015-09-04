@@ -1,16 +1,17 @@
 {
   "name": "jquery-vui-change-tracking",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "jQuery-based widgets, events and Sass mixins which can be used to provide change tracking behaviour.",
   "main": "changeTracker.js",
   "scripts": {
     "clean": "rimraf *.css",
-    "prebuild": "npm run clean && bower install",
+    "prebuild": "npm run clean",
     "build": "node-sass --output-style expanded changeTracking.css.scss changeTracking.css",
     "pretest": "npm run build",
     "lint": "jshint changeTracker.js changeTracking.js && csslint changeTracking.css",
     "test": "npm run lint && karma start karma.conf.js",
-    "report-coverage": "lcov-result-merger 'test/output/coverage/*/lcov.info' | coveralls"
+    "report-coverage": "lcov-result-merger 'test/output/coverage/*/lcov.info' | coveralls",
+    "postinstall": "./node_modules/.bin/bower install"
   },
   "repository": {
     "type": "git",
@@ -23,7 +24,7 @@
     "jquery"
   ],
   "author": "D2L Corporation",
-  "license": "Apache 2.0",
+  "license": "Apache-2.0",
   "bugs": {
     "url": "https://github.com/Brightspace/jquery-valence-ui-change-tracking/issues"
   },
