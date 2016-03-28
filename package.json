@@ -1,6 +1,6 @@
 {
   "name": "jquery-vui-change-tracking",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "jQuery-based widgets, events and Sass mixins which can be used to provide change tracking behaviour.",
   "main": "changeTracker.js",
   "scripts": {
@@ -29,8 +29,10 @@
     "url": "https://github.com/Brightspace/jquery-valence-ui-change-tracking/issues"
   },
   "homepage": "https://github.com/Brightspace/jquery-valence-ui-change-tracking",
+  "dependencies": {
+    "bower": "^1.7.7"
+  },
   "devDependencies": {
-    "bower": "^1.7.7",
     "coveralls": "^2.11.9",
     "csslint": "^0.10.0",
     "jasmine-core": "^2.4.1",
