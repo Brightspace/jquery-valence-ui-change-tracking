@@ -1,6 +1,6 @@
 {
   "name": "jquery-vui-change-tracking",
-  "version": "0.4.0",
+  "version": "0.5.0",
   "description": "jQuery-based widgets, events and Sass mixins which can be used to provide change tracking behaviour.",
   "main": "changeTracker.js",
   "scripts": {
@@ -11,7 +11,7 @@
     "lint": "jshint changeTracker.js changeTracking.js && csslint changeTracking.css",
     "test": "npm run lint && karma start karma.conf.js",
     "report-coverage": "lcov-result-merger 'test/output/coverage/*/lcov.info' | coveralls",
-    "postinstall": "./node_modules/.bin/bower install"
+    "postinstall": "bower install"
   },
   "repository": {
     "type": "git",
@@ -30,18 +30,20 @@
   },
   "homepage": "https://github.com/Brightspace/jquery-valence-ui-change-tracking",
   "devDependencies": {
-    "bower": "^1.4.1",
-    "coveralls": "^2.11.2",
+    "bower": "^1.7.7",
+    "coveralls": "^2.11.9",
     "csslint": "^0.10.0",
+    "jasmine-core": "^2.4.1",
     "jasmine-dom-matchers": "^0.1.1",
-    "jshint": "^2.8.0",
-    "karma": "^0.12.32",
-    "karma-coverage": "^0.4.2",
-    "karma-phantomjs-launcher": "^0.1.4",
-    "karma-jasmine": "^0.3.5",
-    "karma-cli": "0.0.4",
-    "lcov-result-merger": "^1.0.1",
-    "node-sass": "^3.1.1",
-    "rimraf": "^2.3.4"
+    "jshint": "^2.9.1",
+    "karma": "^0.13.22",
+    "karma-cli": "0.1.2",
+    "karma-coverage": "^0.5.5",
+    "karma-jasmine": "^0.3.8",
+    "karma-phantomjs-launcher": "^1.0.0",
+    "lcov-result-merger": "^1.0.2",
+    "node-sass": "^3.4.2",
+    "phantomjs-prebuilt": "^2.1.7",
+    "rimraf": "^2.5.2"
   }
 }
