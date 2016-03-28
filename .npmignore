@@ -8,5 +8,4 @@ test
 .jshintrc
 .travis.yml
 karma.conf.js
-bower.json
 changeTracking.css.scss
