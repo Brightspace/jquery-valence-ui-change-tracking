@@ -3,17 +3,20 @@
   "main": "changeTracking.scss",
   "license": "Apache-2.0",
   "ignore": [
-      "test",
-      ".editorconfig",
-      ".gitignore",
-      ".jshintrc",
-      ".npmignore",
-      ".travis.yml",
-      "karma.conf.js",
-      "package.json"
+    "test",
+    ".editorconfig",
+    ".gitignore",
+    ".jshintrc",
+    ".npmignore",
+    ".travis.yml",
+    "karma.conf.js",
+    "package.json"
   ],
   "devDependencies": {
     "jquery": "~2.0.3",
     "jquery.ui": "~1.10.3"
+  },
+  "dependencies": {
+    "d2l-colors": "~2.1.0"
   }
 }
