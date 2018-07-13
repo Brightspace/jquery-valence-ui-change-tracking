@@ -2,12 +2,12 @@ language: node_js
 node_js: stable
 sudo: false
 after_success:
-- npm run report-coverage
+  - npm run report-coverage
 deploy:
-  provider: npm
-  email: d2ltravisdeploy@d2l.com
-  api_key:
-    secure: DCb2NFegrx6OhGht0Fieda0wjQx30HXQucU1d46wPoA9PWSbDcHXhDoY0fAk1jVTXhv04hTIz4yFQCcNt769Lm3HYc03Gum4F7nOhayRTiPYQm1OAx+wcPAC2fdox/t1auSl3x5ss+p26FqjPzyDF78Y8CRjRy207IfMwQgxbbc=
+  provider: script
+  script: echo "npm credentials were revoked on 2018-07-12. We regenerated many
+    credentials, but this repository had no changes in at least 18 months and
+    was skipped. Reconfigure npm deployments. -omsmith"; exit 1
   on:
     tags: true
     repo: Brightspace/jquery-valence-ui-change-tracking
