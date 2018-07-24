@@ -1,7 +1,7 @@
 @import 'bower_components/d2l-colors/d2l-colors.scss';
 
-$vui-changed-color: $d2l-color-celestine-light-1;
-$vui-changed-color-hover: $d2l-color-celestine-light-1;
+$vui-changed-color: $d2l-color-celestine-plus-2;
+$vui-changed-color-hover: $d2l-color-celestine-plus-2;
 
 @mixin vui-changed() {
 	background-color: $vui-changed-color;
