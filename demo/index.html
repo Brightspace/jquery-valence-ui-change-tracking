@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
+		<title>jquery-vui-change-tracking demo</title>
+		<script type="module" src="../../jquery/dist/jquery.min.js"></script>
+		<script type="module" src="../../jquery.ui/ui/jquery.ui.core.js"></script>
+		<script type="module" src="../../jquery.ui/ui/jquery.ui.widget.js"></script>
+		<script type="module" src="../changeTracker.js"></script>
+		<script type="module" src="../changeTracking.js"></script>
+		<link rel="stylesheet" href="../changeTracking.css">
+	</head>
+	<body>
+
+		<div class="demo-change-tracker" data-track-changes="true" style="padding: 40px;">
+			<div>
+				<input class="demo-trackable" type="text"></input>
+			</div>
+			<div>
+				<input class="demo-trackable" name="demoradio" checked type="radio"></input>
+				<input class="demo-trackable" name="demoradio" type="radio"></input>
+				<input class="demo-trackable" name="demoradio" type="radio"></input>
+			</div>
+			<div>
+				<input class="demo-trackable" type="checkbox"></input>
+			</div>
+			<div>
+				<select class="demo-trackable">
+					<option value="a" selected>1</option>
+					<option value="b">2</option>
+				</select>
+			</div>
+		</div>
+		<button>restore</button>
+
+		<script>
+			window.addEventListener('load', function() {
+				$(document.querySelector('.demo-change-tracker')).vui_changeTracker();
+				$(document.querySelectorAll('.demo-trackable')).vui_changeTracking();
+			});
+			document.querySelector('button').addEventListener('click', function() {
+				$(document.querySelectorAll('.demo-trackable')).trigger('vui-reset');
+			});
+		</script>
+	</body>
+</html>
