@@ -1,6 +1,6 @@
 {
   "name": "jquery-vui-change-tracking",
-  "version": "0.5.3",
+  "version": "1.0.0",
   "description": "jQuery-based widgets, events and Sass mixins which can be used to provide change tracking behaviour.",
   "main": "changeTracker.js",
   "scripts": {
