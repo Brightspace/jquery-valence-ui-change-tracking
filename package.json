@@ -30,13 +30,16 @@
   },
   "homepage": "https://github.com/Brightspace/jquery-valence-ui-change-tracking",
   "dependencies": {
-    "bower": "^1.7.7"
+    "d2l-colors": "BrightspaceUI/colors#semver:^4"
   },
   "devDependencies": {
+    "bower": "^1.7.7",
     "coveralls": "^2.11.9",
     "csslint": "^0.10.0",
     "jasmine-core": "^2.4.1",
     "jasmine-dom-matchers": "^0.1.1",
+    "jquery": "~2.2.4",
+    "jquery-ui": "~1.10.3",
     "jshint": "^2.9.1",
     "karma": "^0.13.22",
     "karma-cli": "0.1.2",
